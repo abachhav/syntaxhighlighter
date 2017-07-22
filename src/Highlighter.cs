@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace src
 {
-
     public class Keyword
     {
         public string Word { get; set; }
         public string Color { get; set; }
         public string Case { get; set; }
+        public string FontWeight {get; set;}
         
     }
 
@@ -27,7 +27,9 @@ namespace src
             {
                 input = input.Replace(keyword.Word, 
                 "[" + keyword.Color + "]"
+                + ( string.Compare(keyword.FontWeight, "bold", true) == 0 ? "[" + keyword.FontWeight + "]" : "" ) 
                 + (string.Compare(keyword.Case, "lower", true) == 0 ? keyword.Word.ToLower() : keyword.Word.ToUpper()) 
+                + ( string.Compare(keyword.FontWeight, "bold", true) == 0 ? "[" + keyword.FontWeight + "]" : "" ) 
                 + "[" + keyword.Color + "]");
             }
 
