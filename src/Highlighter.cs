@@ -4,16 +4,16 @@ namespace src
 {
     public class Highlighter
     {
-        public string[] Keywords {get; set;}
+        private string[] keywords;
 
-        public Highlighter()
+        public Highlighter(string[] keywords)
         {
-            Keywords = new string[] {"as", "If", "and", "then", "when"};
+            this.keywords = keywords;
         }
 
         public string FindAndHighlight(string input)
         {
-            foreach(var keyword in Keywords)
+            foreach(var keyword in keywords)
             {
                 input = input.Replace(keyword, "[blue]" + keyword + "[blue]");
             }
