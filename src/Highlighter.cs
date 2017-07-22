@@ -1,23 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace src
 {
+
+    public class Keyword
+    {
+        public string Word { get; set; }
+        public string Color { get; set; }
+        public string Case { get; set; }
+        
+    }
+
     public class Highlighter
     {
-        private string[] keywords;
+        private List<Keyword> Keywords;
 
-        public Highlighter(string[] keywords)
+        public Highlighter(List<Keyword> keywords)
         {
-            this.keywords = keywords;
+            this.Keywords = keywords;
         }
 
-        public string FindAndHighlight(string input)
+        public string Highlight(string input)
         {
-            foreach(var keyword in keywords)
+            foreach(var keyword in Keywords)
             {
-                var word = keyword.Split(':')[0];
-                var color = keyword.Split(':')[1];
-                input = input.Replace(word, "[" + color + "]" + word + "[" + color + "]");
+                input = input.Replace(keyword.Word, 
+                "[" + keyword.Color + "]"
+                + (string.Compare(keyword.Case, "lower", true) == 0 ? keyword.Word.ToLower() : keyword.Word.ToUpper()) 
+                + "[" + keyword.Color + "]");
             }
 
             return input;
