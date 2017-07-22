@@ -15,7 +15,9 @@ namespace src
         {
             foreach(var keyword in keywords)
             {
-                input = input.Replace(keyword, "[blue]" + keyword + "[blue]");
+                var word = keyword.Split(':')[0];
+                var color = keyword.Split(':')[1];
+                input = input.Replace(word, "[" + color + "]" + word + "[" + color + "]");
             }
 
             return input;
